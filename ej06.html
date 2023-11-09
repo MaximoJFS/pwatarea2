@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tareas</title>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <input type="text" id="nuevaTarea" placeholder="Nueva tarea">
+    <button onclick="agregarTarea()">Agregar</button>
+    <ul id="listaTareas">
+    </ul>
+
+    <script>
+        function agregarTarea() {
+            var tarea = document.getElementById("nuevaTarea").value;
+            if (tarea.trim() === "") {
+                alert("Por favor, ingresa una tarea válida.");
+                return;
+            }
+            var listaTareas = document.getElementById("listaTareas");
+            var nuevaTarea = document.createElement("li");
+            nuevaTarea.innerHTML = tarea;
+            nuevaTarea.onclick = function () {
+                this.parentNode.removeChild(this);
+            };
+            listaTareas.appendChild(nuevaTarea);
+            document.getElementById("nuevaTarea").value = "";
+        }
+    </script>
+</body>
+</html>

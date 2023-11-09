@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cambio de Estilo al Clic</title>
+    <style>
+        /* Estilo inicial del div */
+        #miDiv {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <button id="miBoton">Cambiar Fondo</button>
+    <div id="miDiv">Este es el elemento para cambiar el fondo.</div>
+
+    <script>
+        // JavaScript para cambiar el fondo al hacer clic en el botón
+        document.getElementById("miBoton").addEventListener("click", function () {
+            var miDiv = document.getElementById("miDiv");
+            miDiv.style.backgroundColor = "lightcoral";
+        });
+    </script>
+</body>
+</html>

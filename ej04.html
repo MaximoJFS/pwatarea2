@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reloj Analógico</title>
+    <style>
+        /* Estilos para el reloj y las manecillas */
+        #reloj {
+            width: 300px;
+            height: 300px;
+            background: url('reloj.png') no-repeat center;
+            position: relative;
+        }
+
+        #manecillaHoras, #manecillaMinutos {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+
+        #manecillaHoras {
+            width: 4px;
+            height: 100px;
+            background: url('manecillas_horas.png') no-repeat center;
+            transform-origin: 50% 100%;
+        }
+
+        #manecillaMinutos {
+            width: 2px;
+            height: 150px;
+            background: url('minutero.png') no-repeat center;
+            transform-origin: 50% 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="reloj">
+        <div id="manecillaHoras"></div>
+        <div id="manecillaMinutos"></div>
+    </div>
+
+    <script>
+        function actualizarReloj() {
+            const reloj = document.getElementById("reloj");
+            const manecillaHoras = document.getElementById("manecillaHoras");
+            const manecillaMinutos = document.getElementById("manecillaMinutos");
+            const ahora = new Date();
+            const horas = ahora.getHours() % 12;
+            const minutos = ahora.getMinutes();
+            const segundos = ahora.getSeconds();
+
+            // Calcular los ángulos de las manecillas
+            const anguloHoras = (horas * 360 / 12) + (minutos * 360 / 60 / 12);
+            const anguloMinutos = (minutos * 360 / 60) + (segundos * 360 / 60 / 60);
+
+            // Aplicar transformaciones CSS para rotar las manecillas
+            manecillaHoras.style.transform = `translateX(-2px) rotate(${anguloHoras}deg)`;
+            manecillaMinutos.style.transform = `translateX(-1px) rotate(${anguloMinutos}deg)`;
+
+            setTimeout(actualizarReloj, 1000); // Actualizar cada segundo
+        }
+
+        actualizarReloj(); // Iniciar el reloj
+    </script>
+</body>
+</html>

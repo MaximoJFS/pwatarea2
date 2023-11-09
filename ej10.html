@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego de Preguntas y Respuestas</title>
+</head>
+<body>
+    <h1>Juego de Preguntas y Respuestas</h1>
+    <div id="pregunta">
+        <p id="texto-pregunta"></p>
+        <input type="radio" name="respuesta" id="opcion1">
+        <label for="opcion1" id="etiqueta-opcion1"></label><br>
+        <input type="radio" name="respuesta" id="opcion2">
+        <label for="opcion2" id="etiqueta-opcion2"></label><br>
+        <input type="radio" name="respuesta" id="opcion3">
+        <label for="opcion3" id="etiqueta-opcion3"></label><br>
+        <button onclick="verificarRespuesta()">Siguiente</button>
+    </div>
+    <div id="puntuacion">
+        <p>Puntuación: <span id="puntos">0</span></p>
+    </div>
+
+    <script>
+        var preguntas = [
+            {
+                pregunta: "¿Cuál es la capital de Francia?",
+                opciones: ["París", "Londres", "Roma"],
+                respuestaCorrecta: 1
+            },
+            {
+                pregunta: "¿Cuántos continentes hay en el mundo?",
+                opciones: ["3", "6", "7"],
+                respuestaCorrecta: 2
+            },
+            {
+                pregunta: "¿Quién escribió 'Don Quijote de la Mancha'?",
+                opciones: ["Shakespeare", "Cervantes", "Tolstoy"],
+                respuestaCorrecta: 1
+            }
+        ];
+
+        var preguntaActual = 0;
+        var puntos = 0;
+
+        function mostrarPregunta() {
+            var pregunta = preguntas[preguntaActual];
+            document.getElementById("texto-pregunta").textContent = pregunta.pregunta;
+            document.getElementById("etiqueta-opcion1").textContent = pregunta.opciones[0];
+            document.getElementById("etiqueta-opcion2").textContent = pregunta.opciones[1];
+            document.getElementById("etiqueta-opcion3").textContent = pregunta.opciones[2];
+        }
+
+        function verificarRespuesta() {
+            var respuesta = document.querySelector('input[name="respuesta"]:checked');
+            if (respuesta) {
+                if (parseInt(respuesta.id.slice(-1)) === preguntas[preguntaActual].respuestaCorrecta) {
+                    puntos++;
+                }
+                preguntaActual++;
+                if (preguntaActual < preguntas.length) {
+                    mostrarPregunta();
+                } else {
+                    mostrarPuntuacionFinal();
+                }
+                document.getElementById("puntos").textContent = puntos;
+            }
+        }
+
+        function mostrarPuntuacionFinal() {
+            document.getElementById("pregunta").style.display = "none";
+            document.getElementById("puntuacion").style.display = "block";
+        }
+
+        mostrarPregunta();
+    </script>
+</body>
+</html>

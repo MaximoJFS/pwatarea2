@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Simple</title>
+    <style>
+        /* Estilos para la calculadora */
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Simple</h1>
+    <input type="text" id="display" readonly>
+    <br>
+    <button onclick="agregarDigito('7')">7</button>
+    <button onclick="agregarDigito('8')">8</button>
+    <button onclick="agregarDigito('9')">9</button>
+    <button onclick="borrar()">C</button>
+    <br>
+    <button onclick="agregarDigito('4')">4</button>
+    <button onclick="agregarDigito('5')">5</button>
+    <button onclick="agregarDigito('6')">6</button>
+    <button onclick="realizarOperacion('+')">+</button>
+    <br>
+    <button onclick="agregarDigito('1')">1</button>
+    <button onclick="agregarDigito('2')">2</button>
+    <button onclick="agregarDigito('3')">3</button>
+    <button onclick="realizarOperacion('-')">-</button>
+    <br>
+    <button onclick="agregarDigito('0')">0</button>
+    <button onclick="agregarDigito('.')">.</button>
+    <button onclick="calcularResultado()">=</button>
+    <button onclick="realizarOperacion('*')">*</button>
+    <br>
+    <button onclick="realizarOperacion('/')">/</button>
+</body>
+<script>
+    let input = document.getElementById("display");
+    let operando1 = "";
+    let operando2 = "";
+    let operador = "";
+    let resultado = "";
+
+    function agregarDigito(digito) {
+        if (resultado !== "") {
+            limpiar();
+        }
+        operador += digito;
+        input.value = operador;
+    }
+
+    function realizarOperacion(op) {
+        if (operador !== "") {
+            operando1 = operador;
+            operador = "";
+            operador = op;
+        }
+    }
+
+    function calcularResultado() {
+        if (operando1 !== "" && operador !== "" && operador !== "=") {
+            operando2 = operador;
+            resultado = eval(operando1 + operando2);
+            input.value = resultado;
+        }
+    }
+
+    function limpiar() {
+        operando1 = "";
+        operando2 = "";
+        operador = "";
+        resultado = "";
+        input.value = "";
+    }
+
+    function borrar() {
+        if (operador !== "") {
+            operador = operador.slice(0, -1);
+            input.value = operador;
+        }
+    }
+</script>
+</html>

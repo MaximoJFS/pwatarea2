@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menú de Navegación Desplegable</title>
+    <style>
+        /* Estilos para el menú de navegación */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+            display: inline;
+            position: relative;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+        }
+
+        /* Estilos para los submenús */
+        ul ul {
+            display: none;
+            position: absolute;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+
+        ul li:hover ul {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menú de Navegación Desplegable</h1>
+    <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Servicios</a>
+            <ul>
+                <li><a href="#">Servicio 1</a></li>
+                <li><a href="#">Servicio 2</a></li>
+                <li><a href="#">Servicio 3</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Contacto</a>
+            <ul>
+                <li><a href="#">Whatsapp</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

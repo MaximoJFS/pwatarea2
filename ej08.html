@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrusel de Imágenes</title>
+    <style>
+        /* Estilos para el carrusel */
+        #carrusel {
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #carrusel img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #botones {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrusel de Imágenes</h1>
+    <div id="carrusel">
+        <img src="futbol.jpg" alt="Imagen 1">
+        <img src="champions.jpg" alt="Imagen 2">
+        <img src="reloj.png" alt="Imagen 3">
+    </div>
+    <div id="botones">
+        <button onclick="anteriorImagen()">Anterior</button>
+        <button onclick="siguienteImagen()">Siguiente</button>
+    </div>
+
+    <script>
+        var imagenes = document.querySelectorAll("#carrusel img");
+        var index = 0;
+
+        function mostrarImagen() {
+            for (var i = 0; i < imagenes.length; i++) {
+                imagenes[i].style.display = "none";
+            }
+            imagenes[index].style.display = "block";
+        }
+
+        function siguienteImagen() {
+            index++;
+            if (index >= imagenes.length) {
+                index = 0;
+            }
+            mostrarImagen();
+        }
+
+        function anteriorImagen() {
+            index--;
+            if (index < 0) {
+                index = imagenes.length - 1;
+            }
+            mostrarImagen();
+        }
+
+        setInterval(siguienteImagen, 3000); // Cambia de imagen cada 3 segundos
+        mostrarImagen();
+    </script>
+</body>
+</html>

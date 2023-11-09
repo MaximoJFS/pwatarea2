@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temporizador de Cuenta Regresiva</title>
+    <style>
+        /* Estilos para el temporizador */
+        #temporizador {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temporizador de Cuenta Regresiva</h1>
+    <div id="temporizador">Tiempo restante: <span id="tiempo-restante"></span></div>
+
+    <script>
+        // Establece la fecha y hora de finalización del temporizador (puedes ajustarla)
+        var fechaFinalizacion = new Date("2023-12-31 23:59:59").getTime();
+
+        var x = setInterval(function () {
+            var ahora = new Date().getTime();
+            var tiempoRestante = fechaFinalizacion - ahora;
+
+            var dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+            var horas = Math.floor((tiempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+            var segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+
+            // Actualiza el elemento HTML con el tiempo restante
+            document.getElementById("tiempo-restante").innerHTML = dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+
+            // Detén el temporizador cuando llegue a cero
+            if (tiempoRestante < 0) {
+                clearInterval(x);
+                document.getElementById("tiempo-restante").innerHTML = "¡Tiempo finalizado!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

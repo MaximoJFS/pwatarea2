@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cambio de Imagen al Pasar el Ratón</title>
+    <style>
+        /* Estilo para la imagen */
+        #imagen {
+            width: 300px;
+            transition: transform 0.3s; /* Agrega una transición suave */
+        }
+
+        /* Estilo cuando el ratón pasa por encima de la imagen */
+        #imagen:hover {
+            transform: scale(1.2); /* Aumenta el tamaño de la imagen */
+        }
+    </style>
+</head>
+<body>
+    <h1>Cambio de Imagen al Pasar el Ratón</h1>
+    <p>Pasa el ratón sobre la imagen para ver el cambio.</p>
+    <img id="imagen" src="futbol.jpg" alt="Imagen 1" onmouseover="cambiarImagen()" onmouseout="restaurarImagen()">
+
+    <script>
+        var imagen = document.getElementById("imagen");
+
+        function cambiarImagen() {
+            imagen.src = "champions.jpg"; // Cambia la imagen al pasar el ratón
+        }
+
+        function restaurarImagen() {
+            imagen.src = "futbol.jpg"; // Restaura la imagen al retirar el ratón
+        }
+    </script>
+</body>
+</html>
